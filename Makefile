@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/02/12 18:36:03 by juhanse          ###   ########.fr        #
+#    Updated: 2025/02/12 18:42:37 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ PATH_SRCS = src/
 PATH_UTILS = src/utils/
 
 HEADERS = philo.h
-SRCS = main.c init.c
+SRCS = main.c
 UTILS = ft_atoi.c
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
