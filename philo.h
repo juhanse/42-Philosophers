@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 18:39:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:41:06 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_philo
 // PHILO - UTILS
 int		ft_atoi(const char *str);
 // PHILO - MAIN
-void	ft_init(t_philo *philo, char **argv);
+void	ft_init(t_philo *philo, char **argv, int hasTimer);
 
 #endif
