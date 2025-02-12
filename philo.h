@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 18:34:30 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:39:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 typedef struct s_philo
 {
 	int	id;
+	int	numbers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_of_times_each_philosopher_must_eat;
 }	t_philo;
 
 // PHILO - UTILS
