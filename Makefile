@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/02/12 18:26:03 by juhanse          ###   ########.fr        #
+#    Updated: 2025/02/12 18:36:03 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,15 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 PATH_SRCS = src/
+PATH_UTILS = src/utils/
 
 HEADERS = philo.h
 SRCS = main.c init.c
+UTILS = ft_atoi.c
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
-OBJS = $(SRCS_OBJS)
+UTILS_OBJS = $(addprefix $(PATH_UTILS), $(UTILS:.c=.o))
+OBJS = $(SRCS_OBJS) $(UTILS_OBJS)
 
 all: $(NAME)
 
