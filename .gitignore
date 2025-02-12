@@ -1,0 +1,5 @@
+.vscode
+*.o
+philosophers
+.DS_STORE
+a.out
