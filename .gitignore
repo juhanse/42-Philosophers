@@ -1,5 +1,4 @@
 .vscode
-*.o
+objs
 philosophers
-.DS_STORE
-a.out
+**/.DS_Store

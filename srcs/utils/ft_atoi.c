@@ -6,11 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:33:13 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 18:33:51 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/15 19:35:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philo.h"
+#include "../philo.h"
 
 static int	ft_overflow(long sign)
 {
