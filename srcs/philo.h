@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/20 15:41:43 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/15 19:58:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,30 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef struct s_data
+{
+	int				nb_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	t_philo			philos[200];
+	pthread_mutex_t	forks[200];
+}	t_data;
+
 typedef struct s_philo
 {
-	int	id;
-	int	numbers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_times_each_philosopher_must_eat;
+	int				id;
+	int				nb_meals;
+	long			last_meal;
+	int				fork_left;
+	int				fork_right;
+	pthread_t		thread;
+	struct s_data	*data;
 }	t_philo;
 
-// PHILO - UTILS
+// UTILS
 int		ft_atoi(const char *str);
-// PHILO - MAIN
+
 void	ft_init(t_philo *philo, char **argv, int hasTimer);
 
 #endif
