@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/04/15 19:36:39 by juhanse          ###   ########.fr        #
+#    Updated: 2025/04/15 21:46:38 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ COLOUR_END=\033[0m
 SRCDIR = srcs/
 OBJDIR = objs/
 
-UTILS = utils/ft_atoi.c
+UTILS = utils/ft_atoi.c utils/get_time.c
 SRC = main.c $(UTILS)
 
 SRCS = $(addprefix $(SRCDIR), $(SRC))
