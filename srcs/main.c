@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/15 19:31:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/15 20:01:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ft_init(t_philo *philo, char **argv, int hasTimer)
 {
 	*philo = (t_philo){0};
-	philo->numbers = ft_atoi(argv[1]);
-	philo->time_to_die = ft_atoi(argv[2]);
-	philo->time_to_eat = ft_atoi(argv[3]);
-	philo->time_to_sleep = ft_atoi(argv[4]);
+	philo->data->nb_philos = ft_atoi(argv[1]);
+	philo->data->time_to_die = ft_atoi(argv[2]);
+	philo->data->time_to_eat = ft_atoi(argv[3]);
+	philo->data->time_to_sleep = ft_atoi(argv[4]);
 	if (hasTimer)
-		philo->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		philo->data->num_of_eating = ft_atoi(argv[5]);
 }
 
 int	main(int argc, char **argv)

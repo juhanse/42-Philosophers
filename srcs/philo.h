@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/15 19:58:42 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/15 20:00:37 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				num_of_eating;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
 }	t_data;
