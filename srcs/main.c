@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/16 23:22:24 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/16 23:25:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (printf("not the mount of args asked for, argc : %d\n", argc), 1);
-	if (ft_init_philo(&philo, argv) == 1)
+	if (ft_init_philo(&philo, argv))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/15 21:47:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/16 23:27:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ typedef struct s_data
 int			ft_atoi(const char *str);
 long long	get_time(void);
 
-void		ft_init(t_philo *philo, char **argv, int hasTimer);
+int			ft_init_philo(t_philo *philo, char **argv);
 
 #endif
