@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/17 15:45:18 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/20 00:02:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_data
 int			ft_atoi(const char *str);
 long long	get_time(void);
 
-int			init_data(t_data *data, char **argv);
-int			init_philo(t_data *data);
+int			ft_init_data(t_data *data, char **argv);
+int			ft_init_philo(t_data *data);
+int			ft_init_mutex(t_data *data);
 
 #endif
