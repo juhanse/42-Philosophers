@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 11:45:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 11:55:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(int argc, char **argv)
 	if (ft_init_data(&data, argv))
 		return (1); 
 	ft_debug(&data);
+	if (ft_routine(&data))
+		return (1);
 	return (0);
 }

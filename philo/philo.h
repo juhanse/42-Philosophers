@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 11:31:13 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 11:56:58 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,22 @@ typedef struct s_data
 	int				num_of_eating;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
+	pthread_mutex_t	print;
+	pthread_mutex_t	check_death;
 }	t_data;
 
 // UTILS
 int			ft_atoi(const char *str);
 long long	get_time(void);
 
+// INIT
 int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
+
+// ROUTINE
+int			ft_routine(t_data *data);
+
+void		ft_debug(t_data *data);
 
 #endif
