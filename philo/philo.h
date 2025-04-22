@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/20 00:02:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 11:31:13 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+# define ERR_ARGS "Error\nBad arguments\n"
 
 typedef struct s_philo
 {

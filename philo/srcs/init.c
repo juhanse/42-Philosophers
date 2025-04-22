@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/21 01:04:34 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 11:30:44 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	ft_init_data(t_data *data, char **argv)
 	if (!argv[1] || !argv[2] || !argv[3] || !argv[4])
 		return (1);
 	data->nb_philos = ft_atoi(argv[1]);
-	if (data->nb_philos == 1)
-		return (printf("0 1 has taken a fork\n"), printf("0 1 has died\n"), 1);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
@@ -56,12 +54,14 @@ int	ft_init_data(t_data *data, char **argv)
 	{
 		data->num_of_eating = ft_atoi(argv[5]);
 		if (data->num_of_eating <= 0)
-			return (1);
+			return (printf(ERR_ARGS), 1);
 	}
+	if (data->nb_philos == 1)
+		return (printf("0 1 has taken a fork\n"), printf("0 1 has died\n"), 1);
 	if (data->nb_philos < 1 || data->nb_philos > 200
 		|| data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
-		return (1);
+		return (printf(ERR_ARGS), 1);
 	if (ft_init_philo(data))
 		return (1);
 	return (0);
