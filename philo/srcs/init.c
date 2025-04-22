@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 15:39:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 00:12:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	ft_init_data(t_data *data, char **argv)
 		if (data->num_of_eating <= 0)
 			return (printf(ERR_ARGS), 1);
 	}
+	else
+		data->num_of_eating = -1;
 	if (data->nb_philos == 1)
 		return (printf("0 1 has taken a fork\n"), printf("0 1 has died\n"), 0);
 	if (data->nb_philos < 1 || data->nb_philos > 200

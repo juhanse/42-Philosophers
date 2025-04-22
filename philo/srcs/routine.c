@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:54:09 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 14:28:11 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 00:17:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_threads(void *arg)
 		pthread_mutex_unlock(&philo->data->forks[philo->fork_left]);
 		pthread_mutex_unlock(&philo->data->forks[philo->fork_right]);
 		philo->nb_meals++;
-		if (philo->data->num_of_eating != 0 && \
+		if (philo->data->num_of_eating != -1 && \
 			philo->nb_meals >= philo->data->num_of_eating)
 			break ;
 		ft_logs(philo, "is sleeping");
