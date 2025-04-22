@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 11:56:58 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:03:04 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_eating;
+	long long		start_time;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
 	pthread_mutex_t	print;
 	pthread_mutex_t	check_death;
+	pthread_mutex_t	check_meal;
 }	t_data;
 
 // UTILS
@@ -56,6 +58,9 @@ int			ft_init_mutex(t_data *data);
 
 // ROUTINE
 int			ft_routine(t_data *data);
+
+// EXIT
+void		ft_destroy_mutex(t_data *data);
 
 void		ft_debug(t_data *data);
 
