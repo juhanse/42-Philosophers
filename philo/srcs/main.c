@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 12:15:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:29:49 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	main(int argc, char **argv)
 	ft_debug(&data);
 	if (ft_routine(&data))
 		return (1);
-	ft_destroy_mutex(&data);
 	return (0);
 }
