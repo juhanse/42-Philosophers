@@ -6,11 +6,11 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/04/22 14:10:46 by juhanse          ###   ########.fr        #
+#    Updated: 2025/04/22 15:40:50 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
