@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 11:57:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:06:55 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	ft_init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->print, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->check_death, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->check_meal, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->check_ate, NULL))
 		return (1);
 	return (0);
 }

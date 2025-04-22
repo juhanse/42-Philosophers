@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 12:03:04 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:06:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	pthread_mutex_t	print;
 	pthread_mutex_t	check_death;
 	pthread_mutex_t	check_meal;
+	pthread_mutex_t	check_ate;
 }	t_data;
 
 // UTILS

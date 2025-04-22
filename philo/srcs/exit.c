@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:02:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 12:02:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/22 12:07:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_destroy_mutex(t_data *data)
 	pthread_mutex_destroy(&data->print);
 	pthread_mutex_destroy(&data->check_death);
 	pthread_mutex_destroy(&data->check_meal);
+	pthread_mutex_destroy(&data->check_ate);
 }
