@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/04/23 22:47:41 by juhanse          ###   ########.fr        #
+#    Updated: 2025/04/23 23:24:48 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCDIR = srcs/
 OBJDIR = objs/
 
 UTILS = utils/ft_atoi.c utils/ft_timestamp.c utils/ft_logs.c
-SRC = main.c init.c routine.c philo.c $(UTILS)
+SRC = main.c init.c actions.c philo.c $(UTILS)
 
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 OBJS = $(addprefix $(OBJDIR), $(SRC:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 23:14:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:24:18 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
 
-// ROUTINE
+// ACTIONS
+void		ft_routine(t_philo *philo);
+void		ft_eat(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second);
+void		ft_sleep(t_philo *philo);
+void		ft_think(t_philo *philo);
 
 // PHILO
 void		*ft_check_death(void *phi);
