@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/04/23 21:36:15 by juhanse          ###   ########.fr        #
+#    Updated: 2025/04/23 22:47:41 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ COLOUR_END=\033[0m
 SRCDIR = srcs/
 OBJDIR = objs/
 
-UTILS = utils/ft_atoi.c utils/get_time.c utils/ft_logs.c utils/kill_philo.c
+UTILS = utils/ft_atoi.c utils/ft_timestamp.c utils/ft_logs.c
 SRC = main.c init.c routine.c philo.c $(UTILS)
 
 SRCS = $(addprefix $(SRCDIR), $(SRC))
