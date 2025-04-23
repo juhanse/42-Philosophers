@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   kill_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 21:46:02 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:50:03 by juhanse          ###   ########.fr       */
+/*   Created: 2025/04/23 20:47:26 by juhanse           #+#    #+#             */
+/*   Updated: 2025/04/23 20:50:17 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../philo.h"
 
-long long	ft_get_time(void)
+void	ft_kill_philo(long long time, t_philo *philo)
 {
-	struct timeval	t;
+	long long	i;
 
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+	i = ft_get_time();
+	while (1)
+	{
+		pthread_mutex_lock(&philo->data->check_death);
+		if (philo->data->stop_simulation)
+		{
+			pthread_mutex_unlock(&philo->data->check_death);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->data->check_death);
+		if ((ft_get_time() - i) >= time)
+			break ;
+		usleep(50);
+	}
 }
