@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:44:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 20:49:15 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct s_data
 
 // UTILS
 int			ft_atoi(const char *str);
-long long	get_time(void);
+long long	ft_get_time(void);
 void		ft_logs(t_philo *philo, char *state);
+void		ft_kill_philo(long long time, t_philo *philo);
 
 // INIT
 int			ft_init_data(t_data *data, char **argv);
