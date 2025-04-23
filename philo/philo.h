@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 21:51:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 22:52:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,48 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include <pthread.h>
 # include <sys/time.h>
 
+# define MAX_PHILO 200
 # define ERR_ARGS "Error\nBad arguments\n"
-
-typedef struct t_schedule
-{
-	int				time_to_die;
-	int				time_to_sleep;
-	int				time_to_eat;
-	int				num_of_eating;
-}	t_schedule;
 
 typedef struct s_philo
 {
 	int				id;
-	int				nb_meals;
-	long			last_meal;
-	int				fork_left;
-	int				fork_right;
-	pthread_t		thread_id;
-	t_schedule		*schedule;
+	int				times_eaten;
+	bool			is_eating;
+	pthread_t		thread;
+	long long		last_eat;
 	struct s_data	*data;
+	pthread_mutex_t	*fork_right;
+	pthread_mutex_t	fork_left;
 }	t_philo;
 
 typedef struct s_data
 {
-	int				nb_philos;
-	long long		start_time;
-	int				all_ate;
-	int				stop_simulation;
-	t_philo			philos[200];
-	t_schedule		schedule;
-	pthread_mutex_t	forks[200];
-	pthread_mutex_t	print;
-	pthread_mutex_t	check_death;
-	pthread_mutex_t	check_meal;
-	pthread_mutex_t	check_ate;
+	int				nb_philo;
+	int				philo_eat;
+	long long		t_start;
+	int				stop;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				n_eat;
+	t_philo			*philo;
+	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_stop;
+	pthread_mutex_t	m_dead;
 }	t_data;
 
 // UTILS
 int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
 long long	ft_get_time(void);
-void		ft_logs(t_philo *philo, int id, char *str);
-void		ft_kill_philo(long long time, t_philo *philo);
-void		ft_afk(t_philo *philo);
+void		ft_waiting(int ms);
+void		ft_logs(t_data *data, int id, char *msg);
 
 // INIT
 void		ft_destroy_mutex(t_data *data);
