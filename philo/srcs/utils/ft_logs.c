@@ -6,18 +6,26 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:41:19 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:50:40 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:52:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../philo.h"
 
-void	ft_logs(t_philo *philo, char *state)
+void	ft_logs(t_philo *philo, int id, char *str)
 {
-	long long	timestamp;
-
-	timestamp = ft_get_time() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->print);
-	printf("%lld %d %s\n", timestamp, philo->id, state);
+	pthread_mutex_lock(&philo->data->check_death);
+	if (!philo->data->stop_simulation)
+		printf("%lld %d %s\n", ft_get_time() - philo->data->start_time, id,
+			str);
+	pthread_mutex_unlock(&philo->data->check_death);
 	pthread_mutex_unlock(&philo->data->print);
+}
+
+void	ft_afk(t_philo *philo)
+{
+	ft_logs(philo, philo->id, "is sleeping");
+	ft_kill_philo(philo->schedule->time_to_sleep, philo);
+	ft_logs(philo, philo->id, "is thinking");
 }

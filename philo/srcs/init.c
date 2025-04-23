@@ -6,11 +6,27 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:45:55 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:45:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	ft_destroy_mutex(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->nb_philos)
+	{
+		pthread_join(data->philos[i].thread_id, NULL);
+		pthread_mutex_destroy(&data->forks[i]);
+	}
+	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->check_death);
+	pthread_mutex_destroy(&data->check_meal);
+	pthread_mutex_destroy(&data->check_ate);
+}
 
 int	ft_init_mutex(t_data *data)
 {

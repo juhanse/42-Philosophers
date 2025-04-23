@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 21:36:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:51:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,23 @@ typedef struct s_data
 // UTILS
 int			ft_atoi(const char *str);
 long long	ft_get_time(void);
-void		ft_logs(t_philo *philo, char *state);
+void		ft_logs(t_philo *philo, int id, char *str);
 void		ft_kill_philo(long long time, t_philo *philo);
+void		ft_afk(t_philo *philo);
 
 // INIT
+void		ft_destroy_mutex(t_data *data);
 int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
 
 // ROUTINE
 int			ft_routine(t_data *data);
+void		*ft_threads(void *arg);
 
 // PHILO
+void		ft_guard(t_data *data);
+void		ft_check_death(t_data *data);
 void		ft_take_forks(t_philo *philo);
-
-// EXIT
-void		ft_destroy_mutex(t_data *data);
 
 #endif
