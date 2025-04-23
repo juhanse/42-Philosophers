@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 21:51:19 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:56:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_check_death2(t_philo *philo, t_data *data, int i)
 	pthread_mutex_lock(&(data->check_meal));
 	if (ft_get_time() - philo[(i)].last_meal >= data->schedule.time_to_die)
 	{
-		ft_logs(philo, (i + 1), "has died"); //
+		ft_logs(philo, (i + 1), "has died");
 		pthread_mutex_lock(&data->check_death);
 		data->stop_simulation = 1;
 		pthread_mutex_unlock(&data->check_death);
@@ -92,7 +92,7 @@ void	ft_check_death(t_data *data)
 void	ft_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->data->forks[philo->fork_left]));
-	ft_logs(philo, philo->id, "has taken a fork"); //
+	ft_logs(philo, philo->id, "has taken a fork");
 	pthread_mutex_lock(&(philo->data->forks[philo->fork_right]));
 	ft_logs(philo, philo->id, "has taken a fork");
 	pthread_mutex_lock(&(philo->data->check_meal));

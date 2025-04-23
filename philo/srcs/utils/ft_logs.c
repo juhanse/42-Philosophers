@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:41:19 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 21:52:01 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:56:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_logs(t_philo *philo, int id, char *str)
 			str);
 	pthread_mutex_unlock(&philo->data->check_death);
 	pthread_mutex_unlock(&philo->data->print);
+	return ;
 }
 
 void	ft_afk(t_philo *philo)
