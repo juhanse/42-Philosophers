@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:38:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 20:44:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 
 # define ERR_ARGS "Error\nBad arguments\n"
 
+typedef struct t_schedule
+{
+	int				time_to_die;
+	int				time_to_sleep;
+	int				time_to_eat;
+	int				num_of_eating;
+}	t_schedule;
+
 typedef struct s_philo
 {
 	int				id;
@@ -29,20 +37,18 @@ typedef struct s_philo
 	int				fork_left;
 	int				fork_right;
 	pthread_t		thread_id;
+	t_schedule		*schedule;
 	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
 {
 	int				nb_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				num_of_eating;
 	long long		start_time;
 	int				all_ate;
 	int				stop_simulation;
 	t_philo			philos[200];
+	t_schedule		schedule;
 	pthread_mutex_t	forks[200];
 	pthread_mutex_t	print;
 	pthread_mutex_t	check_death;
