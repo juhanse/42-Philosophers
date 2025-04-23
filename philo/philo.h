@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:51:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 21:36:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ int			ft_init_mutex(t_data *data);
 
 // ROUTINE
 int			ft_routine(t_data *data);
+
+// PHILO
+void		ft_take_forks(t_philo *philo);
 
 // EXIT
 void		ft_destroy_mutex(t_data *data);
