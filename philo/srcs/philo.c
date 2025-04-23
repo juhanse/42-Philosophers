@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 23:18:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:21:57 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*ft_check_death(void *phi)
 	ft_waiting(philo->data->t_die + 1);
 	pthread_mutex_lock(&philo->data->m_eat);
 	last = philo->last_eat;
-	if (timestamp() - last > (long)(philo->data->t_die) && !ft_is_dead(philo, 0) && philo->id != 0)
+	if (ft_get_time() - last > (long)(philo->data->t_die) && !ft_is_dead(philo, 0) && philo->id != 0)
 	{
 		pthread_mutex_unlock(&philo->data->m_eat);
 		pthread_mutex_lock(&philo->data->m_stop);
@@ -70,7 +70,7 @@ void	*ft_philo(void *phi)
 	while (!ft_is_dead(philo, 0))
 	{
 		pthread_create(&t, NULL, ft_check_death, phi);
-		philo_eat(philo);
+		ft_routine(philo);
 		pthread_detach(t);
 		if (philo->times_eaten == philo->data->n_eat && philo->data->n_eat != -1)
 		{
