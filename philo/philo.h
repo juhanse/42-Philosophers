@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/22 14:08:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 20:38:12 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_philo
 	long			last_meal;
 	int				fork_left;
 	int				fork_right;
-	pthread_t		thread;
+	pthread_t		thread_id;
 	struct s_data	*data;
 }	t_philo;
 
@@ -40,6 +40,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				num_of_eating;
 	long long		start_time;
+	int				all_ate;
 	int				stop_simulation;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
