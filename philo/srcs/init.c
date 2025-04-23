@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 23:05:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:12:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,13 @@ void	ft_destroy_mutex(t_data *data)
 
 int	ft_init_mutex(t_data *data)
 {
-	int	i;
-
-	i = -1;
-	while (++i < data->nb_philos)
-		if (pthread_mutex_init(&data->forks[i], NULL))
-			return (1);
-	if (pthread_mutex_init(&data->print, NULL))
+	if (pthread_mutex_init(&data->m_print, NULL))
 		return (1);
-	if (pthread_mutex_init(&data->check_death, NULL))
+	if (pthread_mutex_init(&data->m_eat, NULL))
 		return (1);
-	if (pthread_mutex_init(&data->check_meal, NULL))
+	if (pthread_mutex_init(&data->m_stop, NULL))
 		return (1);
-	if (pthread_mutex_init(&data->check_ate, NULL))
+	if (pthread_mutex_init(&data->m_dead, NULL))
 		return (1);
 	return (0);
 }
@@ -53,15 +47,21 @@ int	ft_init_philo(t_data *data)
 	i = -1;
 	if (ft_init_mutex(data))
 		return (1);
+	data->t_start = ft_get_time();
 	while (++i < data->nb_philos)
 	{
-		data->philos[i].id = i + 1;
-		data->philos[i].nb_meals = 0;
-		data->philos[i].last_meal = 0;
-		data->philos[i].fork_left = i;
-		data->philos[i].fork_right = (i + 1) % data->nb_philos;
-		data->philos[i].schedule = &data->schedule;
-		data->philos[i].data = data;
+		data->philo[i].id = i + 1;
+		data->philo[i].last_eat = 0;
+		data->philo[i].fork_right = NULL;
+		data->philo[i].data = data;
+		data->philo[i].times_eaten = 0;
+		pthread_mutex_init(&(data->philo[i].fork_left), NULL);
+		if (i == data->nb_philos - 1)
+			data->philo[i].fork_right = &data->philo[0].fork_left;
+		else
+			data->philo[i].fork_right = &data->philo[i + 1].fork_left;
+		if (pthread_create(&data->philo[i].thread, NULL, ft_philo, (void *)&data->philo[i]) != 0)
+			return (-1);
 	}
 	return (0);
 }
