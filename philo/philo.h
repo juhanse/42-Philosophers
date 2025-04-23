@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 22:52:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 22:53:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 
 # define MAX_PHILO 200
-# define ERR_ARGS "Error\nBad arguments\n"
+# define ERR_ARGS "Error\nInvalid arguments\n"
 
 typedef struct s_philo
 {
