@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 22:53:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:05:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define MAX_PHILO 200
 # define ERR_ARGS "Error\nInvalid arguments\n"
+# define ERR_LIMITS "Error\nPhilosophers limits\n"
+# define ERR_MALLOC "Error\nAllocation failed\n"
 
 typedef struct s_philo
 {
@@ -37,7 +39,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int				nb_philo;
+	int				nb_philos;
 	int				philo_eat;
 	long long		t_start;
 	int				stop;
