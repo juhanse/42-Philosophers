@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kill_philo.c                                       :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 20:47:26 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:50:17 by juhanse          ###   ########.fr       */
+/*   Created: 2025/04/15 21:46:02 by juhanse           #+#    #+#             */
+/*   Updated: 2025/04/23 22:45:54 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../philo.h"
 
-void	ft_kill_philo(long long time, t_philo *philo)
+long long	ft_get_time(void)
 {
-	long long	i;
+	struct timeval	t;
 
-	i = ft_get_time();
-	while (1)
-	{
-		pthread_mutex_lock(&philo->data->check_death);
-		if (philo->data->stop_simulation)
-		{
-			pthread_mutex_unlock(&philo->data->check_death);
-			break ;
-		}
-		pthread_mutex_unlock(&philo->data->check_death);
-		if ((ft_get_time() - i) >= time)
-			break ;
-		usleep(50);
-	}
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void	ft_waiting(int ms)
+{
+	long long	start;
+
+	start = ft_get_time();
+	while ((ft_get_time() - start < ms))
+		usleep(ms / 10);
 }

@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 21:46:02 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 20:50:03 by juhanse          ###   ########.fr       */
+/*   Created: 2025/04/23 22:43:40 by juhanse           #+#    #+#             */
+/*   Updated: 2025/04/23 22:43:51 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../philo.h"
 
-long long	ft_get_time(void)
+int	ft_isdigit(int c)
 {
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
