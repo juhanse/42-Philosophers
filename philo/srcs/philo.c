@@ -6,101 +6,77 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 21:56:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:18:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static int	ft_guard_checker(t_data *data)
+static int	ft_is_dead(t_philo *philo, int nb)
 {
-	ft_check_death(data);
-	pthread_mutex_lock(&data->check_death);
-	if (data->stop_simulation)
+	pthread_mutex_lock(&philo->data->m_stop);
+	pthread_mutex_lock(&philo->data->m_dead);
+	if (nb)
+		philo->data->stop = 1;
+	if (philo->data->stop)
 	{
-		pthread_mutex_unlock(&data->check_death);
-		return (2);
+		pthread_mutex_unlock(&philo->data->m_dead);
+		pthread_mutex_unlock(&philo->data->m_stop);
+		return (1);
 	}
-	pthread_mutex_unlock(&data->check_death);
+	pthread_mutex_unlock(&philo->data->m_dead);
+	pthread_mutex_unlock(&philo->data->m_stop);
 	return (0);
 }
 
-static int	ft_check_death2(t_philo *philo, t_data *data, int i)
+void	*ft_check_death(void *phi)
 {
-	pthread_mutex_lock(&(data->check_meal));
-	if (ft_get_time() - philo[(i)].last_meal >= data->schedule.time_to_die)
-	{
-		ft_logs(philo, (i + 1), "has died");
-		pthread_mutex_lock(&data->check_death);
-		data->stop_simulation = 1;
-		pthread_mutex_unlock(&data->check_death);
-		pthread_mutex_unlock(&(data->check_meal));
-		return (2);
-	}
-	pthread_mutex_unlock(&(data->check_meal));
-	return (0);
-}
+	t_philo		*philo;
+	long long	last;
 
-void	ft_guard(t_data *data)
-{
-	int	i;
-
-	while (1)
+	philo = (t_philo *)phi;
+	ft_waiting(philo->data->t_die + 1);
+	pthread_mutex_lock(&philo->data->m_eat);
+	last = philo->last_eat;
+	if (timestamp() - last > (long)(philo->data->t_die) && !ft_is_dead(philo, 0) && philo->id != 0)
 	{
-		pthread_mutex_lock(&data->check_ate);
-		if (data->all_ate)
+		pthread_mutex_unlock(&philo->data->m_eat);
+		pthread_mutex_lock(&philo->data->m_stop);
+		if (philo->data->stop)
 		{
-			pthread_mutex_unlock(&data->check_ate);
-			break ;
+			pthread_mutex_unlock(&philo->data->m_stop);
+			return (NULL);
 		}
-		pthread_mutex_unlock(&data->check_ate);
-		if (ft_guard_checker(data) == 2)
-			break ;
-		i = 0;
-		while (data->schedule.num_of_eating != -1 && i < data->nb_philos
-			&& data->philos[i].nb_meals >= data->schedule.num_of_eating)
-			i++;
-		pthread_mutex_lock(&data->check_ate);
-		if (i == data->nb_philos)
-			data->all_ate = 1;
-		pthread_mutex_unlock(&data->check_ate);
+		pthread_mutex_unlock(&philo->data->m_stop);
+		ft_is_dead(philo, 1);
+		ft_logs(philo->data, philo->id, "died");
+		// free ?
+		exit(EXIT_SUCCESS);
 	}
+	pthread_mutex_unlock(&philo->data->m_eat);
+	return (NULL);
 }
 
-void	ft_check_death(t_data *data)
+void	*ft_philo(void *phi)
 {
-	int		i;
-	t_philo	*philo;
+	t_philo		*philo;
+	t_data		*data;
+	pthread_t	t;
 
-	philo = data->philos;
-	i = -1;
-	while (++i < data->nb_philos)
+	philo = (t_philo *)phi;
+	data = philo->data;
+	if (philo->id % 2 == 0)
+		ft_waiting(data->t_eat / 2);
+	while (!ft_is_dead(philo, 0))
 	{
-		pthread_mutex_lock(&data->check_death);
-		if (data->stop_simulation)
+		pthread_create(&t, NULL, ft_check_death, phi);
+		philo_eat(philo);
+		pthread_detach(t);
+		if (philo->times_eaten == philo->data->n_eat && philo->data->n_eat != -1)
 		{
-			pthread_mutex_unlock(&data->check_death);
-			break ;
+			ft_is_dead(philo, 1);
+			return (NULL);
 		}
-		pthread_mutex_unlock(&data->check_death);
-		if (ft_check_death2(philo, data, i) == 2)
-			break ;
-		usleep(100);
 	}
-}
-
-void	ft_take_forks(t_philo *philo)
-{
-	pthread_mutex_lock(&(philo->data->forks[philo->fork_left]));
-	ft_logs(philo, philo->id, "has taken a fork");
-	pthread_mutex_lock(&(philo->data->forks[philo->fork_right]));
-	ft_logs(philo, philo->id, "has taken a fork");
-	pthread_mutex_lock(&(philo->data->check_meal));
-	ft_logs(philo, philo->id, "is eating");
-	philo->last_meal = ft_get_time();
-	philo->nb_meals++;
-	pthread_mutex_unlock(&(philo->data->check_meal));
-	ft_kill_philo(philo->schedule->time_to_eat, philo);
-	pthread_mutex_unlock(&(philo->data->forks[philo->fork_left]));
-	pthread_mutex_unlock(&(philo->data->forks[philo->fork_right]));
+	return (NULL);
 }
