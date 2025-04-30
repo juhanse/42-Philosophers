@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 23:24:18 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/30 14:01:38 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int			ft_isdigit(int c);
 long long	ft_get_time(void);
 void		ft_waiting(int ms);
 void		ft_logs(t_data *data, int id, char *msg);
+void		ft_free(t_data *data);
 
 // INIT
-void		ft_destroy_mutex(t_data *data);
 int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
