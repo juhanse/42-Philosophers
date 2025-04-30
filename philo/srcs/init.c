@@ -6,26 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/23 23:12:14 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/04/30 13:57:48 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-void	ft_destroy_mutex(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->nb_philos)
-		pthread_mutex_destroy(&data->philo[i].fork_left);
-	if (data->philo)
-		free(data->philo); // OUPS
-	pthread_mutex_destroy(&data->m_print);
-	pthread_mutex_destroy(&data->m_eat);
-	pthread_mutex_destroy(&data->m_stop);
-	pthread_mutex_destroy(&data->m_dead);
-}
 
 int	ft_init_mutex(t_data *data)
 {
