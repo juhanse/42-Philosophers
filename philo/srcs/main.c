@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/30 14:02:08 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:19:28 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 		return (1);
 	data = (t_data){0};
 	if (ft_init_data(&data, argv))
+		return (1);
+	if (ft_init_philo(&data))
 		return (1);
 	ft_free(&data);
 	return (0);
