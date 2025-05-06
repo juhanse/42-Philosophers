@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:25:36 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:44:12 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
 
 // ACTIONS
+int			ft_should_stop(t_data *data);
 void		ft_routine(t_philo *philo);
-void		ft_eat(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second);
+void		ft_eat(t_philo *philo, pthread_mutex_t *first, \
+	pthread_mutex_t *second);
 void		ft_sleep(t_philo *philo);
 void		ft_think(t_philo *philo);
 
