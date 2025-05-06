@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/04/30 14:01:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:25:36 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define MAX_PHILO 200
-# define ERR_ARGS "Error\nInvalid arguments\n"
+# define MAX_PHILO 	200
+# define ERR_ARGS 	"Error\nInvalid arguments\n"
 # define ERR_LIMITS "Error\nPhilosophers limits\n"
 # define ERR_MALLOC "Error\nAllocation failed\n"
+# define ERR_INIT	"Error\nInitialisation failed\n"
 
 typedef struct s_philo
 {
