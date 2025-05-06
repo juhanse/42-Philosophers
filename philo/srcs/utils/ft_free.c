@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:01:04 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:56:17 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 15:08:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_free(t_data *data)
 
 	i = -1;
 	pthread_mutex_lock(&data->m_stop);
-    data->stop = 1;
-    pthread_mutex_unlock(&data->m_stop);
+	data->stop = 1;
+	pthread_mutex_unlock(&data->m_stop);
 	if (data->philo)
 	{
 		while (++i < data->nb_philos)
