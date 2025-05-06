@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:19:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:44:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	ft_init_philo(t_data *data)
 			data->philo[i].fork_right = &data->philo[0].fork_left;
 		else
 			data->philo[i].fork_right = &data->philo[i + 1].fork_left;
-		if (pthread_create(&data->philo[i].thread, NULL, ft_philo, (void *)&data->philo[i]) != 0)
+		if (pthread_create(&data->philo[i].thread, NULL, ft_philo, \
+			(void *)&data->philo[i]) != 0)
 			return (-1);
 	}
 	return (0);
