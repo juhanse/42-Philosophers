@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:45:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 14:59:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ void	*ft_check_death(void *phi)
 	long long	last;
 
 	philo = (t_philo *)phi;
-	ft_waiting(philo->data->t_die + 1);
-	if (ft_should_stop(philo->data))
-		return (NULL);
-	pthread_mutex_lock(&philo->data->m_eat);
-	last = philo->last_eat;
-	if (ft_get_time() - last > (long)(philo->data->t_die) && \
-	!ft_is_dead(philo, 0) && philo->id != 0)
+	while (!ft_should_stop(philo->data))
 	{
+		pthread_mutex_lock(&philo->data->m_eat);
+		last = philo->last_eat;
+		if (ft_get_time() - last > (long)(philo->data->t_die) && \
+		!ft_is_dead(philo, 0) && philo->id != 0)
+		{
+			pthread_mutex_unlock(&philo->data->m_eat);
+			ft_logs(philo->data, philo->id, "died");
+			ft_is_dead(philo, 1);
+			break ;
+		}
 		pthread_mutex_unlock(&philo->data->m_eat);
-		ft_is_dead(philo, 1);
-		ft_logs(philo->data, philo->id, "died");
-		return (NULL);
 	}
-	pthread_mutex_unlock(&philo->data->m_eat);
 	return (NULL);
 }
 
@@ -71,7 +71,7 @@ void	*ft_philo(void *phi)
 			&& philo->data->n_eat != -1)
 		{
 			ft_is_dead(philo, 1);
-			return (NULL);
+			break ;
 		}
 	}
 	return (NULL);

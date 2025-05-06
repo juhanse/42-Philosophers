@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:54:09 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:44:32 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/06 15:00:37 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	ft_routine(t_philo *philo)
 	pthread_mutex_t	*first_fork;
 	pthread_mutex_t	*second_fork;
 
+	if (ft_should_stop(philo->data))
+		return ;
 	if (philo->id % 2 == 0)
 	{
 		first_fork = philo->fork_right;
@@ -77,8 +79,6 @@ void	ft_routine(t_philo *philo)
 		first_fork = &philo->fork_left;
 		second_fork = philo->fork_right;
 	}
-	if (ft_should_stop(philo->data))
-		return ;
 	pthread_mutex_lock(first_fork);
 	if (ft_should_stop(philo->data))
 	{
