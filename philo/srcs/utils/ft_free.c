@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:01:04 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/07 12:24:18 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:55:31 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ void	ft_free(t_data *data)
 	int	i;
 
 	i = -1;
-	pthread_mutex_lock(&data->m_stop);
-	data->stop = 1;
-	pthread_mutex_unlock(&data->m_stop);
-	if (data->philo)
-	{
-		while (++i < data->nb_threads)
-			pthread_join(data->philo[i].thread, NULL);
-		i = -1;
-		while (++i < data->nb_philos)
-			pthread_mutex_destroy(&(data->philo[i].fork_left));
-		free(data->philo);
-	}
+	while (++i < data->nb_threads)
+		pthread_join(data->philo[i].thread, NULL);
+	i = -1;
+	while (++i < data->nb_philos)
+		pthread_mutex_destroy(&data->forks[i]);
 	pthread_mutex_destroy(&data->m_print);
 	pthread_mutex_destroy(&data->m_eat);
 	pthread_mutex_destroy(&data->m_stop);
-	pthread_mutex_destroy(&data->m_dead);
+	free(data->philo);
+	free(data->forks);
 }
