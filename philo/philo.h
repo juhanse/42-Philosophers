@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:44:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/07 12:23:51 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	int				t_eat;
 	int				t_sleep;
 	int				n_eat;
+	int				nb_threads;
 	t_philo			*philo;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_eat;
