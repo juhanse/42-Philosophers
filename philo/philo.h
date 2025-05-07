@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/07 12:23:51 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:36:16 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ typedef struct s_philo
 	int				id;
 	int				times_eaten;
 	bool			is_eating;
-	pthread_t		thread;
 	long long		last_eat;
+	pthread_t		thread;
 	struct s_data	*data;
-	pthread_mutex_t	*fork_right;
-	pthread_mutex_t	fork_left;
 }	t_philo;
 
 typedef struct s_data
@@ -50,10 +48,10 @@ typedef struct s_data
 	int				n_eat;
 	int				nb_threads;
 	t_philo			*philo;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_stop;
-	pthread_mutex_t	m_dead;
 }	t_data;
 
 // UTILS
@@ -63,6 +61,7 @@ long long	ft_get_time(void);
 void		ft_waiting(int ms);
 void		ft_logs(t_data *data, int id, char *msg);
 void		ft_free(t_data *data);
+void		*ft_malloc(t_data *data, size_t size);
 
 // INIT
 int			ft_init_data(t_data *data, char **argv);
@@ -72,8 +71,7 @@ int			ft_init_mutex(t_data *data);
 // ACTIONS
 int			ft_should_stop(t_data *data);
 void		ft_routine(t_philo *philo);
-void		ft_eat(t_philo *philo, pthread_mutex_t *first, \
-	pthread_mutex_t *second);
+void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
 void		ft_think(t_philo *philo);
 
