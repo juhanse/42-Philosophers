@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/07 15:36:16 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:43:29 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_philo
 	bool			is_eating;
 	long long		last_eat;
 	pthread_t		thread;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t *fork_right;
 	struct s_data	*data;
 }	t_philo;
 
