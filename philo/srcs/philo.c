@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 14:59:01 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/07 23:23:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 static int	ft_is_dead(t_philo *philo, int nb)
 {
 	pthread_mutex_lock(&philo->data->m_stop);
-	pthread_mutex_lock(&philo->data->m_dead);
 	if (nb)
 		philo->data->stop = 1;
 	if (philo->data->stop)
-	{
-		pthread_mutex_unlock(&philo->data->m_dead);
-		pthread_mutex_unlock(&philo->data->m_stop);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->data->m_dead);
+		return (pthread_mutex_unlock(&philo->data->m_stop), 1); 
 	pthread_mutex_unlock(&philo->data->m_stop);
 	return (0);
 }
