@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/07 23:23:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:42:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	*ft_philo(void *phi)
 	data = philo->data;
 	if (philo->id % 2 == 0)
 		ft_waiting(data->t_eat / 2);
-	pthread_create(&t, NULL, ft_check_death, phi);
-	pthread_detach(t);
 	while (!ft_is_dead(philo, 0))
 	{
 		ft_routine(philo);

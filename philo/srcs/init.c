@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 11:38:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:41:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	ft_init_philo(t_data *data)
 		data->philo[i].fork_left = &data->forks[i];
 		data->philo[i].fork_right = &data->forks[(i + 1) % data->nb_philos];
 	}
+	ft_start_simulation(data);
 	return (0);
 }
 
