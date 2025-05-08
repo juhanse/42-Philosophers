@@ -6,11 +6,21 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 17:24:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 18:11:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+int	ft_one_philo(t_data *data)
+{
+	pthread_mutex_lock(data->philo->fork_left);
+	ft_logs(&data->philo[0], "has taken a fork");
+	pthread_mutex_unlock(data->philo->fork_left);
+	ft_waiting(data, data->t_die);
+	ft_logs(&data->philo[0], "dead");
+	return (0);
+}
 
 int	ft_should_stop(t_data *data)
 {
@@ -58,7 +68,7 @@ void	*ft_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		ft_waiting(philo->data->t_eat / 2);
+		ft_waiting(philo->data, philo->data->t_eat / 2);
 	while (!ft_should_stop(philo->data))
 	{
 		ft_take_forks(philo);
