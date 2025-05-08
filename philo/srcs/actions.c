@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:54:09 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 18:00:11 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:11:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 void	ft_take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(philo->fork_left);
-	ft_logs(philo, "has taken a fork");
-	pthread_mutex_lock(philo->fork_right);
-	ft_logs(philo, "has taken a fork");
-	pthread_mutex_unlock(philo->fork_left);
-	pthread_mutex_unlock(philo->fork_right);
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->fork_left);
+		ft_logs(philo, "has taken a fork");
+		pthread_mutex_lock(philo->fork_right);
+		ft_logs(philo, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(philo->fork_right);
+		ft_logs(philo, "has taken a fork");
+		pthread_mutex_lock(philo->fork_left);
+		ft_logs(philo, "has taken a fork");
+	}
 }
 
 void	ft_eat(t_philo *philo)
