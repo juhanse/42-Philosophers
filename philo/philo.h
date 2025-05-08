@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/07 15:43:29 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:38:56 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void		*ft_malloc(t_data *data, size_t size);
 int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
+int			ft_start_simulation(t_data *data);
 
 // ACTIONS
 int			ft_should_stop(t_data *data);
