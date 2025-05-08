@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 11:46:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:08:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main(int argc, char **argv)
 		return (printf(ERR_INIT), 1);
 	if (ft_start_simulation(&data))
 		return (printf(ERR_INIT), 1);
-	while (!ft_should_stop(&data))
+/* 	while (!ft_should_stop(&data))
 		usleep(1000);
-	usleep(10000);
+	usleep(10000); */
 	ft_free(&data);
 	return (0);
 }
