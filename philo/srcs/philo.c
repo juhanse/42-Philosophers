@@ -6,11 +6,16 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:09:14 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:19:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	ft_monitoring(t_data *data)
+{
+	// TODO
+}
 
 bool	ft_is_stop(t_philo *philo)
 {

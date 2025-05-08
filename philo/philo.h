@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 11:54:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:19:30 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data
 	int				n_eat;
 	int				nb_threads;
 	t_philo			*philo;
+	pthread_t		monitoring;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_eat;
@@ -79,6 +80,7 @@ void		ft_sleep(t_philo *philo);
 void		ft_think(t_philo *philo);
 
 // PHILO
+void		ft_monitoring(t_data *data);
 bool		ft_is_stop(t_philo *philo);
 void		*ft_check_death(void *phi);
 void		*ft_philo(void *phi);
