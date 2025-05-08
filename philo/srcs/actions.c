@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:54:09 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/06 15:00:37 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:40:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	ft_should_stop(t_data *data)
 	return (stop);
 }
 
-void	ft_eat(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
+void	ft_eat(t_philo *philo)
 {
 	if (ft_should_stop(philo->data))
 	{
-		pthread_mutex_unlock(second);
-		pthread_mutex_unlock(first);
+		pthread_mutex_unlock(philo->fork_left);
+		pthread_mutex_unlock(philo->fork_right);
 		return ;
 	}
 	pthread_mutex_lock(&philo->data->m_eat);
@@ -40,8 +40,8 @@ void	ft_eat(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
 	pthread_mutex_lock(&philo->data->m_eat);
 	philo->is_eating = false;
 	pthread_mutex_unlock(&philo->data->m_eat);
-	pthread_mutex_unlock(second);
-	pthread_mutex_unlock(first);
+	pthread_mutex_unlock(philo->fork_left);
+	pthread_mutex_unlock(philo->fork_right);
 	ft_waiting(1);
 	ft_sleep(philo);
 }
@@ -64,41 +64,38 @@ void	ft_think(t_philo *philo)
 
 void	ft_routine(t_philo *philo)
 {
-	pthread_mutex_t	*first_fork;
-	pthread_mutex_t	*second_fork;
-
 	if (ft_should_stop(philo->data))
 		return ;
 	if (philo->id % 2 == 0)
 	{
-		first_fork = philo->fork_right;
-		second_fork = &philo->fork_left;
+		philo->fork_left = philo->fork_right;
+		philo->fork_right = &philo->fork_left;
 	}
 	else
 	{
-		first_fork = &philo->fork_left;
-		second_fork = philo->fork_right;
+		philo->fork_left = &philo->fork_left;
+		philo->fork_right = philo->fork_right;
 	}
-	pthread_mutex_lock(first_fork);
+	pthread_mutex_lock(philo->fork_left);
 	if (ft_should_stop(philo->data))
 	{
-		pthread_mutex_unlock(first_fork);
+		pthread_mutex_unlock(philo->fork_left);
 		return ;
 	}
 	ft_logs(philo->data, philo->id, "has taken a fork");
 	if (philo->data->nb_philos == 1)
 	{
 		ft_waiting(philo->data->t_die * 2);
-		pthread_mutex_unlock(first_fork);
+		pthread_mutex_unlock(philo->fork_left);
 		return ;
 	}
-	pthread_mutex_lock(second_fork);
+	pthread_mutex_lock(philo->fork_right);
 	if (ft_should_stop(philo->data))
 	{
-		pthread_mutex_unlock(second_fork);
-		pthread_mutex_unlock(first_fork);
+		pthread_mutex_unlock(philo->fork_right);
+		pthread_mutex_unlock(philo->fork_left);
 		return ;
 	}
 	ft_logs(philo->data, philo->id, "has taken a fork");
-	ft_eat(philo, first_fork, second_fork);
+	ft_eat(philo);
 }
