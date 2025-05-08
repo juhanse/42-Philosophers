@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 11:54:41 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:09:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	*ft_check_death(void *phi)
 void	*ft_philo(void *phi)
 {
 	t_philo		*philo;
-	pthread_t	t;
 
 	philo = (t_philo *)phi;
 	if (philo->id % 2 == 0)
