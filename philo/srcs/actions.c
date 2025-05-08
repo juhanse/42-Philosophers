@@ -6,49 +6,39 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 11:54:09 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:12:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 17:22:19 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	ft_should_stop(t_data *data)
+void	ft_take_forks(t_philo *philo)
 {
-	int	stop;
-
-	pthread_mutex_lock(&data->m_stop);
-	stop = data->stop;
-	pthread_mutex_unlock(&data->m_stop);
-	return (stop);
+	pthread_mutex_lock(philo->fork_left);
+	ft_logs(philo, "has taken a fork");
+	pthread_mutex_lock(philo->fork_right);
+	ft_logs(philo, "has taken a fork");
 }
 
 void	ft_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->m_eat);
-	philo->is_eating = true;
-	philo->times_eaten++;
 	philo->last_eat = ft_get_time();
-	ft_logs(philo->data, philo->id, "is eating");
+	philo->times_eaten++;
 	pthread_mutex_unlock(&philo->data->m_eat);
+	ft_logs(philo, "is eating");
 	ft_waiting(philo->data->t_eat);
-	pthread_mutex_lock(&philo->data->m_eat);
-	philo->is_eating = false;
-	pthread_mutex_unlock(&philo->data->m_eat);
-	ft_sleep(philo);
+	pthread_mutex_unlock(philo->fork_left);
+	pthread_mutex_unlock(philo->fork_right);
 }
 
 void	ft_sleep(t_philo *philo)
 {
-	ft_logs(philo->data, philo->id, "is sleeping");
-	ft_think(philo);
+	ft_logs(philo, "is sleeping");
+	ft_waiting(philo->data->t_sleep);
 }
 
 void	ft_think(t_philo *philo)
 {
-	ft_logs(philo->data, philo->id, "is thinking");
-}
-
-void	ft_routine(t_philo *philo)
-{
-	// TODO
+	ft_logs(philo, "is thinking");
 }
