@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:19:30 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 17:06:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		ft_sleep(t_philo *philo);
 void		ft_think(t_philo *philo);
 
 // PHILO
-void		ft_monitoring(t_data *data);
+void		*ft_monitoring(void *arg);
 bool		ft_is_stop(t_philo *philo);
 void		*ft_check_death(void *phi);
 void		*ft_philo(void *phi);

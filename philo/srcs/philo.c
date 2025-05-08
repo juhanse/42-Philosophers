@@ -6,15 +6,50 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:19:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 17:06:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	ft_monitoring(t_data *data)
+static int	ft_should_stop(t_data *data)
 {
-	// TODO
+	int	stop;
+
+	pthread_mutex_lock(&data->m_stop);
+	stop = data->stop;
+	pthread_mutex_unlock(&data->m_stop);
+	return (stop);
+}
+
+void	*ft_monitoring(void *arg)
+{
+	t_data		*data;
+	t_philo		*philo;
+	int			i;
+
+	data = (t_data *)arg;
+	while (!ft_should_stop(data))
+	{
+		i = -1;
+		while (++i < data->nb_philos)
+		{
+			philo = &data->philo[i];
+			pthread_mutex_lock(&data->m_eat);
+			if ((ft_get_time() - philo->last_eat) > data->t_die)
+			{
+				ft_print(data, philo->id, "died");
+				pthread_mutex_lock(&data->m_stop);
+				data->stop = 1;
+				pthread_mutex_unlock(&data->m_stop);
+				pthread_mutex_unlock(&data->m_eat);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&data->m_eat);
+		}
+		usleep(1000);
+	}
+	return (NULL);
 }
 
 bool	ft_is_stop(t_philo *philo)
@@ -54,7 +89,7 @@ void	*ft_check_death(void *phi)
 
 void	*ft_philo(void *phi)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)phi;
 	if (philo->id % 2 == 0)
