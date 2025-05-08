@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:19:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 13:24:46 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_start_simulation(t_data *data)
 
 	i = -1;
 	data->t_start = ft_get_time();
-	if (pthread_create(&data->monitoring, NULL, ft_monitoring, data) != 0)
+	if (pthread_create(&data->monitoring, NULL, ft_monitoring, &data) != 0)
 		return (ft_free(data), 1);
 	while (++i < data->nb_philos)
 	{
