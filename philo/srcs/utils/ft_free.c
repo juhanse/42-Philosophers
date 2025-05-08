@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:01:04 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 12:21:43 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 18:05:52 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	ft_free(t_data *data)
 	pthread_mutex_destroy(&data->m_eat);
 	pthread_mutex_destroy(&data->m_stop);
 	free(data->philo);
-	free(data->forks);
+	//free(data->forks);
 }
