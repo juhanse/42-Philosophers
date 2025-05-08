@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 17:06:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 17:26:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 long long	ft_get_time(void);
 void		ft_waiting(int ms);
-void		ft_logs(t_data *data, int id, char *msg);
+void		ft_logs(t_philo *philo, char *msg);
 void		ft_free(t_data *data);
-void		*ft_malloc(t_data *data, size_t size);
+void		*ft_malloc(t_data *data, size_t size); // unused
 
 // INIT
 int			ft_init_data(t_data *data, char **argv);
@@ -72,17 +72,15 @@ int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
 int			ft_start_simulation(t_data *data);
 
-// ACTIONS
+// PHILO
 int			ft_should_stop(t_data *data);
-void		ft_routine(t_philo *philo);
+void		*ft_monitoring(void *arg);
+void		*ft_routine(void *arg);
+
+// ACTIONS
+void		ft_take_forks(t_philo *philo);
 void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
 void		ft_think(t_philo *philo);
-
-// PHILO
-void		*ft_monitoring(void *arg);
-bool		ft_is_stop(t_philo *philo);
-void		*ft_check_death(void *phi);
-void		*ft_philo(void *phi);
 
 #endif
