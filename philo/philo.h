@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 17:53:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 19:09:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ long long	ft_get_time(void);
 void		ft_waiting(t_data *data, int ms);
 void		ft_logs(t_philo *philo, char *msg);
 void		ft_free(t_data *data);
-void		*ft_malloc(t_data *data, size_t size); // unused
 
 // INIT
 int			ft_init_data(t_data *data, char **argv);
