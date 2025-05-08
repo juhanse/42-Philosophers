@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 18:53:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/08 19:09:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	*ft_routine(void *arg)
 		ft_waiting(philo->data, philo->data->t_eat / 2);
 	while (!ft_should_stop(philo->data))
 	{
+		printf("STOP: %d\n", ft_should_stop(philo->data)); // DELETE
 		ft_take_forks(philo);
 		ft_eat(philo);
 		ft_sleep(philo);
