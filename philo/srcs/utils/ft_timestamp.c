@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 21:46:02 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 17:52:56 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:35:48 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_waiting(t_data *data, int ms)
 	start = ft_get_time();
 	while ((ft_get_time() - start < ms))
 	{
-		if (data->stop)
+		if (ft_get_stop(data) == 1)
 			break ;
 		usleep(50);
 	}

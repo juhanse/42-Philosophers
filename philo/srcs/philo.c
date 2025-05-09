@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 11:21:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:35:46 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_check_meals(t_philo *philo)
 	return (ret);
 }
 
-int	ft_should_stop(t_data *data)
+int	ft_get_stop(t_data *data)
 {
 	int	stop;
 
@@ -65,7 +65,8 @@ void	*ft_monitoring(void *arg)
 	int		done;
 
 	data = (t_data *)arg;
-	while (!ft_should_stop(data))
+	printf("\nSHOULD STOP: %d\n", ft_get_stop(data));
+	while (ft_get_stop(data) != 1)
 	{
 		i = -1;
 		done = 0;
@@ -90,7 +91,8 @@ void	*ft_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		ft_waiting(philo->data, philo->data->t_eat / 2);
-	while (!ft_should_stop(philo->data))
+	printf("\n###SHOULD STOP: %d\n", ft_get_stop(philo->data));
+	while (!ft_get_stop(philo->data))
 	{
 		ft_take_forks(philo);
 		ft_eat(philo);

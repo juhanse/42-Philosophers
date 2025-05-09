@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 11:23:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:35:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			ft_start_simulation(t_data *data);
 
 // PHILO
 int			ft_one_philo(t_data *data);
-int			ft_should_stop(t_data *data);
+int			ft_get_stop(t_data *data);
 void		*ft_monitoring(void *arg);
 void		*ft_routine(void *arg);
 
