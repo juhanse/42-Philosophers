@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:15:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:22:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_check_meals(t_philo *philo)
 
 	ret = 0;
 	pthread_mutex_lock(&philo->data->m_eat);
-	if (philo->data->n_eat > 0 && philo->times_eaten >= philo->data->n_eat)
+	if (philo->data->n_eat > 0 && philo->nb_meals >= philo->data->n_eat)
 		ret = 1;
 	pthread_mutex_unlock(&philo->data->m_eat);
 	return (ret);
