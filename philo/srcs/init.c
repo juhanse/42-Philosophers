@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:22:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:29:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	ft_init_philo(t_data *data)
 
 int	ft_init_data(t_data *data, char **av)
 {
-	data->philo_eat = 0;
 	data->nb_philos = ft_atoi(av[1]);
 	if (data->nb_philos < 1 || data->nb_philos > MAX_PHILO)
 		return (printf(ERR_LIMITS), 1);
