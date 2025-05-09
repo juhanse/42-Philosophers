@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 11:44:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:02:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	ft_check_death(t_philo *philo)
 	if (now - philo->last_eat > philo->data->t_die)
 	{
 		ft_logs(philo, "died");
-		ft_end_simulation(philo->data);
 		pthread_mutex_unlock(&philo->data->m_eat);
+		ft_end_simulation(philo->data);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->data->m_eat);
@@ -74,11 +74,11 @@ void	*ft_monitoring(void *arg)
 			if (ft_check_death(&data->philo[i]))
 				return (NULL);
 			if (ft_check_meals(&data->philo[i]))
-			meals++;
+				meals++;
 		}
 		if (data->n_eat > 0 && meals == data->nb_philos)
 			return (ft_end_simulation(data), NULL);
-		usleep(1000);
+		ft_waiting(data, 1);
 	}
 	return (NULL);
 }
