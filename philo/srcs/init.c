@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:29:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:46:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int	ft_start_simulation(t_data *data)
 	if (pthread_create(&data->monitoring, NULL, ft_monitoring, data) != 0)
 		return (ft_free(data), 1);
 	return (0);
+}
+
+void	ft_stop_simulation(t_data *data)
+{
+	pthread_mutex_lock(&data->m_stop);
+	data->stop = 1;
+	pthread_mutex_unlock(&data->m_stop);
 }
 
 int	ft_init_mutex(t_data *data)

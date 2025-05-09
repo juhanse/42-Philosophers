@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:28:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:47:11 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int			ft_init_data(t_data *data, char **argv);
 int			ft_init_philo(t_data *data);
 int			ft_init_mutex(t_data *data);
 int			ft_start_simulation(t_data *data);
+void		ft_stop_simulation(t_data *data);
 
 // PHILO
-int			ft_one_philo(t_data *data);
 int			ft_get_stop(t_data *data);
 void		*ft_monitoring(void *arg);
 void		*ft_routine(void *arg);

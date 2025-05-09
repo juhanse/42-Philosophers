@@ -6,18 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:22:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:48:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-static void	ft_end_simulation(t_data *data)
-{
-	pthread_mutex_lock(&data->m_stop);
-	data->stop = 1;
-	pthread_mutex_unlock(&data->m_stop);
-}
 
 static int	ft_check_death(t_philo *philo)
 {
@@ -29,7 +22,7 @@ static int	ft_check_death(t_philo *philo)
 	{
 		ft_logs(philo, "died");
 		pthread_mutex_unlock(&philo->data->m_eat);
-		ft_end_simulation(philo->data);
+		ft_stop_simulation(philo->data);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->data->m_eat);
@@ -60,8 +53,9 @@ int	ft_get_stop(t_data *data)
 
 void	*ft_monitoring(void *arg)
 {
+	int		i;
+	int		meals;
 	t_data	*data;
-	int		i, meals;
 
 	data = (t_data *)arg;
 	while (!ft_get_stop(data))
@@ -77,7 +71,7 @@ void	*ft_monitoring(void *arg)
 		}
 		if (data->n_eat > 0 && meals == data->nb_philos)
 		{
-			ft_end_simulation(data);
+			ft_stop_simulation(data);
 			return (NULL);
 		}
 		usleep(1000);
