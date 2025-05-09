@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 11:35:46 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:44:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,21 @@ void	*ft_monitoring(void *arg)
 {
 	t_data	*data;
 	int		i;
-	int		done;
+	int		meals;
 
 	data = (t_data *)arg;
-	printf("\nSHOULD STOP: %d\n", ft_get_stop(data));
 	while (ft_get_stop(data) != 1)
 	{
 		i = -1;
-		done = 0;
+		meals = 0;
 		while (++i < data->nb_philos)
 		{
 			if (ft_check_death(&data->philo[i]))
 				return (NULL);
 			if (ft_check_meals(&data->philo[i]))
-				done++;
+			meals++;
 		}
-		if (data->n_eat > 0 && done == data->nb_philos)
+		if (data->n_eat > 0 && meals == data->nb_philos)
 			return (ft_end_simulation(data), NULL);
 		usleep(1000);
 	}
@@ -91,7 +90,6 @@ void	*ft_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		ft_waiting(philo->data, philo->data->t_eat / 2);
-	printf("\n###SHOULD STOP: %d\n", ft_get_stop(philo->data));
 	while (!ft_get_stop(philo->data))
 	{
 		ft_take_forks(philo);
