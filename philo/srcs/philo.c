@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:48:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:33:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*ft_monitoring(void *arg)
 	{
 		i = -1;
 		meals = 0;
-		while (++i < data->nb_philos)
+		while (++i < data->nb_philos && !ft_get_stop(data))
 		{
 			if (ft_check_death(&data->philo[i]))
 				return (NULL);
@@ -70,10 +70,7 @@ void	*ft_monitoring(void *arg)
 				meals++;
 		}
 		if (data->n_eat > 0 && meals == data->nb_philos)
-		{
-			ft_stop_simulation(data);
-			return (NULL);
-		}
+			return (ft_stop_simulation(data), NULL);
 		usleep(1000);
 	}
 	return (NULL);
@@ -85,11 +82,13 @@ void	*ft_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		ft_waiting(philo->data, philo->data->t_eat / 2);
+		ft_waiting(philo->data, philo->data->t_eat - philo->data->t_eat / 2);
 	while (!ft_get_stop(philo->data))
 	{
 		ft_take_forks(philo);
 		ft_eat(philo);
+		if (philo->data->n_eat > 0 && philo->nb_meals >= philo->data->n_eat)
+			break ;
 		ft_sleep(philo);
 		ft_think(philo);
 	}

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 14:46:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:21:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ int	ft_init_data(t_data *data, char **av)
 	if (data->t_die < 0 || data->t_eat < 0
 		|| data->t_sleep < 0 || (av[5] && data->n_eat < 1))
 		return (printf(ERR_ARGS), 1);
-	if (!(data->philo = malloc(sizeof(t_philo) * data->nb_philos)))
+	data->philo = malloc(sizeof(t_philo) * data->nb_philos);
+	if (!(data->philo))
 		return (printf(ERR_MALLOC), 1);
-	if (!(data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos)))
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+	if (!(data->forks))
 		return (free(data->philo), printf(ERR_MALLOC), 1);
 	return (0);
 }
