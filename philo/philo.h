@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 19:09:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:23:06 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		*ft_monitoring(void *arg);
 void		*ft_routine(void *arg);
 
 // ACTIONS
+int			ft_one_philo(t_data *data);
 void		ft_take_forks(t_philo *philo);
 void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
