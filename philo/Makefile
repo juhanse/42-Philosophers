@@ -6,13 +6,13 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 18:25:19 by juhanse           #+#    #+#              #
-#    Updated: 2025/05/09 11:45:11 by juhanse          ###   ########.fr        #
+#    Updated: 2025/05/09 12:30:31 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -rf
 
 COLOUR_GREEN=\033[0;32m

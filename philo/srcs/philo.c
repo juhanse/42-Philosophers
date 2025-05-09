@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 12:02:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 14:15:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ int	ft_get_stop(t_data *data)
 void	*ft_monitoring(void *arg)
 {
 	t_data	*data;
-	int		i;
-	int		meals;
+	int		i, meals;
 
 	data = (t_data *)arg;
-	while (ft_get_stop(data) != 1)
+	while (!ft_get_stop(data))
 	{
 		i = -1;
 		meals = 0;
@@ -77,8 +76,11 @@ void	*ft_monitoring(void *arg)
 				meals++;
 		}
 		if (data->n_eat > 0 && meals == data->nb_philos)
-			return (ft_end_simulation(data), NULL);
-		ft_waiting(data, 1);
+		{
+			ft_end_simulation(data);
+			return (NULL);
+		}
+		usleep(1000);
 	}
 	return (NULL);
 }
