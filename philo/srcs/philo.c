@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 21:07:36 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 19:57:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:10:55 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_one_philo(t_data *data)
 	pthread_mutex_lock(data->philo->fork_left);
 	ft_logs(&data->philo[0], "has taken a fork");
 	pthread_mutex_unlock(data->philo->fork_left);
-	ft_logs(&data->philo[0], "has taken a fork");
 	ft_waiting(data, data->t_die);
 	ft_logs(&data->philo[0], "dead");
 	return (0);
