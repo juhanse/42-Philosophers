@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 18:52:48 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/09 11:16:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_start_simulation(t_data *data)
 
 	i = -1;
 	data->t_start = ft_get_time();
-	if (pthread_create(&data->monitoring, NULL, ft_monitoring, &data) != 0)
-		return (ft_free(data), 1);
 	while (++i < data->nb_philos)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL, ft_routine, \
@@ -27,6 +25,8 @@ int	ft_start_simulation(t_data *data)
 			return (ft_free(data), 1);
 		data->nb_threads++;
 	}
+	if (pthread_create(&data->monitoring, NULL, ft_monitoring, &data) != 0)
+		return (ft_free(data), 1);
 	return (0);
 }
 
