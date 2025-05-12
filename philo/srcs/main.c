@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/13 00:26:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/13 00:42:51 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,13 @@ int	main(int argc, char **argv)
 	if (ft_init_data(&data, argv))
 		return (printf(ERR_INIT), ft_free(&data), 1);
 	if (data.nb_philos == 1)
-		return (ft_one_philo(&data), ft_free(&data), 1);
+	{
+		if (pthread_create(&data.philo[0].thread, NULL, \
+		ft_one_philo, &data) != 0)
+			return (printf(ERR_INIT), ft_free(&data), 1);
+		data.nb_threads++;
+		return (ft_free(&data), 0);
+	}
 	if (ft_start_simulation(&data))
 		return (printf(ERR_INIT), ft_free(&data), 1);
 	ft_free(&data);
