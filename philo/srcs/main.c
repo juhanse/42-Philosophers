@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:26:15 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/08 18:53:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/13 00:23:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	main(int argc, char **argv)
 		return (printf(ERR_ARGS), 1);
 	data = (t_data){0};
 	if (ft_init_data(&data, argv))
-		return (printf(ERR_INIT), 1);
-	if (ft_init_philo(&data))
 		return (printf(ERR_INIT), 1);
 	if (data.nb_philos == 1)
 		return (ft_one_philo(&data), ft_free(&data), 1);

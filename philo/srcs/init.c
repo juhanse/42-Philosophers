@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/09 16:21:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/13 00:22:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ int	ft_init_data(t_data *data, char **av)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!(data->forks))
 		return (free(data->philo), printf(ERR_MALLOC), 1);
+	if (ft_init_philo(data))
+		return (ft_free(data), 1);
 	return (0);
 }
