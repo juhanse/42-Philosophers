@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:40:17 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:59 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/13 00:32:03 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	ft_start_simulation(t_data *data)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL, ft_routine, \
 			&data->philo[i]) != 0)
-			return (ft_free(data), 1);
+			return (1);
 		data->nb_threads++;
 	}
 	if (pthread_create(&data->monitoring, NULL, ft_monitoring, data) != 0)
-		return (ft_free(data), 1);
+		return (1);
 	return (0);
 }
 
@@ -43,8 +43,11 @@ int	ft_init_mutex(t_data *data)
 
 	i = -1;
 	while (++i < data->nb_philos)
+	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
 			return (1);
+		data->nb_forks++;
+	}
 	if (pthread_mutex_init(&data->m_print, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->m_eat, NULL))
@@ -86,16 +89,16 @@ int	ft_init_data(t_data *data, char **av)
 	data->stop = 0;
 	if (av[5])
 		data->n_eat = ft_atoi(av[5]);
-	if (data->t_die < 0 || data->t_eat < 0
-		|| data->t_sleep < 0 || (av[5] && data->n_eat < 1))
+	if (data->t_die < 0 || data->t_eat < 0 || data->t_sleep < 0 \
+	|| (av[5] && data->n_eat < 1))
 		return (printf(ERR_ARGS), 1);
 	data->philo = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!(data->philo))
 		return (printf(ERR_MALLOC), 1);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!(data->forks))
-		return (free(data->philo), printf(ERR_MALLOC), 1);
+		return (printf(ERR_MALLOC), 1);
 	if (ft_init_philo(data))
-		return (ft_free(data), 1);
+		return (1);
 	return (0);
 }

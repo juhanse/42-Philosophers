@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:22:49 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/12 13:59:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/13 00:28:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	int				t_eat;
 	int				t_sleep;
 	int				n_eat;
+	int				nb_forks;
 	int				nb_threads;
 	t_philo			*philo;
 	pthread_t		monitoring;
